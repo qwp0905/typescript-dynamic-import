@@ -1,6 +1,6 @@
 import { readdirSync } from 'fs'
 import { join } from 'path'
-import Human from './person.class'
+import Human from './human.class'
 
 export default async (
 	name: string,
