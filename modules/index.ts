@@ -22,7 +22,6 @@ const loader = async (job: string): Promise<Loader> => {
       map[job_name] = module
     })
   )
-
   return map[job]
 }
 
