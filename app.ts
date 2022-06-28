@@ -1,15 +1,11 @@
 import { createInterface, Interface } from 'readline'
+import { Person } from './interface/interface'
 import modules from './modules'
 
 const rl: Interface = createInterface({
   input: process.stdin,
   output: process.stdout
 })
-interface Person {
-  name?: string
-  age?: number
-  job?: string
-}
 
 const data: Person = {}
 

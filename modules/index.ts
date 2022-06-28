@@ -1,5 +1,6 @@
 import { readdirSync } from 'fs'
 import { join } from 'path'
+import { Loader } from '../interface/interface'
 import Human from './human.class'
 
 export default async (
@@ -7,10 +8,14 @@ export default async (
   age: number,
   job: string
 ): Promise<void> => {
-  const { default: Module }: Loader = await loader(job)
-  const person: Human = new Module(name, age)
-  person.sayHello()
-  person.work()
+  try {
+    const { default: Module }: Loader = await loader(job)
+    const person: Human = new Module(name, age)
+    person.sayHello()
+    person.work()
+  } catch (err: unknown) {
+    console.log('그런 직업은 없어')
+  }
 }
 
 const loader = async (job: string): Promise<Loader> => {
@@ -23,8 +28,4 @@ const loader = async (job: string): Promise<Loader> => {
     })
   )
   return map[job]
-}
-
-type Loader = {
-  default: new (name: string, age: number) => Human
 }
